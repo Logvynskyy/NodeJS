@@ -1,0 +1,21 @@
+name: Trying GitHub Actions
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [pull_request]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello from Github Actions"
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+      - name: Install Everything
+        run: |
+          npm ci
+      - name: Eslint working flow
+        run: |
+          npm run eslint
+          npm run prettier
