@@ -13,6 +13,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
+
     - name: Cache node modules
       id: cache-nodemodules
       uses: actions/cache@v3
@@ -25,6 +26,12 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
           ${{ runner.os }}-
+
+    - if: ${{ steps.cache-nodemodules.outputs.cache-hit != 'true' }}
+      name: List the state of node modules
+      continue-on-error: true
+      run: npm list
+
     - name: Install Everything
       run: npm ci
     - name: Run eslint
