@@ -11,8 +11,7 @@
     ],
     "extends": [
         "metarhia",
-        "plugin:sonarjs/recommended",
-        "prettier"
+        "plugin:sonarjs/recommended"
     ],
     "overrides": [
     ],
