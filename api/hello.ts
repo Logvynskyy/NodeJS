@@ -1,5 +1,13 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { Router } from '../src/router';
+
+const helloRouter = new Router('api/');
 const hello = 'Hello World!123';
 
-export default function handler(req: any, res: any) {
-  res.status(200).json({ hello });
+helloRouter.get('hello', async (req: VercelRequest, res: VercelResponse) => {
+  res.status(200).send({ message: hello});
+});
+
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  helloRouter.handle(req, res);
 }
