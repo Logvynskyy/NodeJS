@@ -20,7 +20,8 @@
         "sourceType": "module"
     },
     "rules": {
-      "no-unused-vars": "off"
+      "no-unused-vars": "off",
+      "max-len": "off"
     },
     "settings":{
       "import/resolver": {

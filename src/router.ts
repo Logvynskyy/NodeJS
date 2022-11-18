@@ -16,8 +16,12 @@ export class Router {
     this.baseRoute = route;
   }
 
-  private use(method: HTTPMethod, route: string, handlers: RequestHandler[]) {
-    if (handlers.length === 0) throw new Error('Handlers must be implemented');
+  private use(
+    method: HTTPMethod,
+    route: string,
+    ...handlers: RequestHandler[]
+  ) {
+    if (handlers.length === 0) { throw new Error('You did not assign any handlers!'); }
 
     const fullRoute = this.baseRoute.concat(route);
 
@@ -33,7 +37,7 @@ export class Router {
     const { url, method } = req;
     const handlers = this.routes[url as string][method as string];
 
-    if (handlers === null) throw new Error('Handlers are not implemented');
+    if (handlers === null) throw new Error('You did not assign any handlers!');
 
     for (const handler of handlers) {
       await handler(req, res);
@@ -43,18 +47,18 @@ export class Router {
   }
 
   public get(route: string, ...handlers: RequestHandler[]) {
-    this.use(HTTPMethod.GET, route, handlers);
+    this.use(HTTPMethod.GET, route, ...handlers);
   }
 
   public post(route: string, ...handlers: RequestHandler[]) {
-    this.use(HTTPMethod.POST, route, handlers);
+    this.use(HTTPMethod.POST, route, ...handlers);
   }
 
   public put(route: string, ...handlers: RequestHandler[]) {
-    this.use(HTTPMethod.PUT, route, handlers);
+    this.use(HTTPMethod.PUT, route, ...handlers);
   }
 
   public delete(route: string, ...handlers: RequestHandler[]) {
-    this.use(HTTPMethod.DELETE, route, handlers);
+    this.use(HTTPMethod.DELETE, route, ...handlers);
   }
 }
