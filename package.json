@@ -31,7 +31,7 @@
     "description": "",
     "lint-staged": {
       "*.ts": "eslint --cache --fix",
-      "*.{ts,css,md}": "prettier --write"
+      "*.{ts,css,md}": "prettier --check"
     },
     "dependencies": {
         "dotenv": "^16.0.3"

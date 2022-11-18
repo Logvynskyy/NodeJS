@@ -15,7 +15,8 @@ router.delete('/delete', (req, res) => {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     await router.handle(req, res);
-  } catch (exception) {
-    res.status(exception.status).send('An error occured!' + exception.message);
+  } catch (e) {
+    const exception = e as Error;
+    res.status(500).send('An error occured!' + exception.message);
   }
 }
