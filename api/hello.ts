@@ -1,17 +1,17 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Router } from '../src/router';
 
-const router = new Router('/api');
+const router = new Router('/api/hello');
 
-router.get('/hello', (req: VercelRequest, res: VercelResponse) => {
+router.get('/', (req: VercelRequest, res: VercelResponse) => {
   res.status(200).send({ message: 'Hello from get method' });
 });
 
-router.post('/hello', (req: VercelRequest, res: VercelResponse) => {
+router.post('/', (req: VercelRequest, res: VercelResponse) => {
   res.status(200).send({ message: 'Hello from post method' });
 });
 
-router.delete('/hello', (req, res) => {
+router.delete('/', (req, res) => {
   res.send({ message: 'Hello from delete method' });
 });
 
