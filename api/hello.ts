@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   res.send({ message: 'Hello from get method' });
 });
 
-router.post('/', (req: VercelRequest, res: VercelResponse) => {
+router.post('/', (req, res) => {
   res.status(200).send({ message: 'Hello from post method' });
 });
 
@@ -15,11 +15,11 @@ router.delete('/', (req, res) => {
   res.send({ message: 'Hello from delete method' });
 });
 
-router.put('/second', (req: VercelRequest, res: VercelResponse) => {
+router.put('/second', (req, res) => {
   res.status(200).send({ message: 'Hello from 2nd endpoint and 4th method' });
 });
 
-router.get('/third', (req: VercelRequest, res: VercelResponse) => {
+router.get('/third', (req, res) => {
   res.status(200).send({ message: 'Hello from 3nd endpoint' });
 });
 

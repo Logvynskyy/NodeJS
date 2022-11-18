@@ -45,7 +45,7 @@ export class Router {
       await handler(req, res);
     }
 
-    res.status(200).send('Request handled!');
+    res.status(200).end();
   }
 
   public get(route: string, ...handlers: RequestHandler[]) {
