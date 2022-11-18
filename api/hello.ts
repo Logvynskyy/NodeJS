@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Router } from '../src/router';
 
-const router = new Router('api');
+const router = new Router('/api');
 
 router.get('/hello', (req: VercelRequest, res: VercelResponse) => {
   res.status(200).send({ message: 'Hello from get method' });
