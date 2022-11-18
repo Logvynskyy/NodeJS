@@ -30,7 +30,8 @@
     "license": "ISC",
     "description": "",
     "lint-staged": {
-      "src/**/*.{ts,css,md}": "prettier --check --ignore-unknown"
+      "*.ts": "eslint --cache --fix",
+      "*.{ts,css,md}": "prettier --write"
     },
     "dependencies": {
         "dotenv": "^16.0.3"
