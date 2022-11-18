@@ -3,8 +3,8 @@ import { Router } from '../src/router';
 
 const router = new Router('/api/hello');
 
-router.get('/', (req: VercelRequest, res: VercelResponse) => {
-  res.status(200).send({ message: 'Hello from get method' });
+router.get('/', (req, res) => {
+  res.send({ message: 'Hello from get method' });
 });
 
 router.post('/', (req: VercelRequest, res: VercelResponse) => {

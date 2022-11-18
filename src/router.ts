@@ -21,11 +21,13 @@ export class Router {
     route: string,
     ...handlers: RequestHandler[]
   ) {
-    if (handlers.length === 0) { throw new Error('You did not assign any handlers!'); }
+    if (!handlers.length) {
+      throw new Error('You did not assign any handlers!');
+    }
 
     const fullRoute = this.baseRoute.concat(route);
 
-    if (this.routes[fullRoute]?.[method] === null) {
+    if (!this.routes[fullRoute]?.[method]) {
       const existingHandlers = this.routes[fullRoute] || {};
       this.routes[fullRoute] = { ...existingHandlers, [method]: handlers };
     } else {
@@ -37,7 +39,7 @@ export class Router {
     const { url, method } = req;
     const handlers = this.routes[url as string][method as string];
 
-    if (handlers === null) throw new Error('You did not assign any handlers!');
+    if (!handlers) throw new Error('You did not assign any handlers!');
 
     for (const handler of handlers) {
       await handler(req, res);
