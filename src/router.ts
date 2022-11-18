@@ -21,7 +21,7 @@ export class Router {
 
     const fullRoute = this.baseRoute.concat(route);
 
-    if (!this.routes[fullRoute]?.[method]) {
+    if (this.routes[fullRoute]?.[method] === null) {
       const existingHandlers = this.routes[fullRoute] || {};
       this.routes[fullRoute] = { ...existingHandlers, [method]: handlers };
     } else {
@@ -39,7 +39,7 @@ export class Router {
       await handler(req, res);
     }
 
-    res.send({ req });
+    res.status(200).send('Request handled!');
   }
 
   public get(route: string, ...handlers: RequestHandler[]) {
@@ -56,9 +56,5 @@ export class Router {
 
   public delete(route: string, ...handlers: RequestHandler[]) {
     this.use(HTTPMethod.DELETE, route, handlers);
-  }
-
-  public patch(route: string, ...handlers: RequestHandler[]) {
-    this.use(HTTPMethod.PATCH, route, handlers);
   }
 }
