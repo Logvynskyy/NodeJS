@@ -16,8 +16,8 @@
     "scripts": {
       "eslint": "eslint src/**/*.ts --ignore-path .gitignore",
       "eslint:fix": "eslint . src/**/*.ts --fix --ignore-path .gitignore",
-      "prettier": "prettier src/**/*.ts --check --ignore-path .gitignore",
-      "prettier:fix": "prettier src/**/*.ts --write --ignore-path .gitignore",
+      "prettier": "prettier src/**/*.* --check --ignore-path .gitignore",
+      "prettier:fix": "prettier src/**/*.* --write --ignore-path .gitignore",
       "prepare": "husky install"
     },
     "keywords": [],
