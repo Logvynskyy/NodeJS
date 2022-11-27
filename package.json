@@ -1,31 +1,40 @@
 {
     "devDependencies": {
-      "@typescript-eslint/eslint-plugin": "^5.40.0",
-      "@typescript-eslint/parser": "^5.40.0",
-      "eslint": "^8.25.0",
-      "eslint-config-metarhia": "^8.1.0",
-      "eslint-plugin-sonarjs": "^0.16.0",
-      "prettier": "^1.19.1",
-      "husky": "^8.0.1",
-      "lint-staged": "^13.0.3",
-      "typescript": "^4.8.4"
+        "@typescript-eslint/eslint-plugin": "^5.40.0",
+        "@typescript-eslint/parser": "^5.40.0",
+        "@vercel/node": "^2.6.2",
+        "eslint": "^8.25.0",
+        "eslint-config-metarhia": "^8.1.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "4.0.0",
+        "eslint-plugin-sonarjs": "^0.16.0",
+        "husky": "^8.0.1",
+        "lint-staged": "^13.0.3",
+        "prettier": "2.0.5",
+        "typescript": "^4.8.4"
     },
-    "name": "moderd-nodejs",
+    "name": "nodejs-labs",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "src/index.js",
+    "type": "module",
     "scripts": {
-      "eslint": "eslint src/**/*.ts --ignore-path .gitignore",
-      "eslint:fix": "eslint . src/**/*.ts --fix --ignore-path .gitignore",
-      "prettier": "prettier src/**/*.* --check --ignore-path .gitignore",
-      "prettier:fix": "prettier src/**/*.* --write --ignore-path .gitignore",
-      "prepare": "husky install"
+        "start": "npx ts-node src/index.ts",
+        "eslint": "eslint \"src/**/*.ts\" --ignore-path .gitignore",
+        "eslint:fix": "eslint . \"src/**/*.ts\" --fix --ignore-path .gitignore",
+        "prettier": "prettier \"src/**/*.*\" --check --ignore-path .gitignore",
+        "prettier:fix": "prettier \"src/**/*.*\" --write --ignore-path .gitignore",
+        "prepare": "husky install"
     },
     "keywords": [],
     "author": "Logvynskyi Stas",
     "license": "ISC",
     "description": "",
     "lint-staged": {
-      "*.ts": "eslint --cache --fix",
-      "*.{ts,css,md}": "prettier --write"
+        "*.ts": "eslint --cache --fix",
+        "*.{ts,css,md}": "prettier --write"
+    },
+    "dependencies": {
+        "dotenv": "^16.0.3",
+        "fast-xml-parser": "^4.0.12"
     }
-  }
+}
