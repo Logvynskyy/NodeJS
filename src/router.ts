@@ -8,15 +8,10 @@ type RequestHandler = (
   payload: Object,
 ) => void | Promise<void>;
 
-const defaultResponseEntity = { name: 'Servus!' };
-
 const contentTypes: { [key: string]: any } = {
-  'text/html': (text: string): Object =>
-    plainTextParser(text, defaultResponseEntity),
-  'application/xml': (xml: string): Object =>
-    xmlParser(xml, defaultResponseEntity),
-  'application/json': (json: string): Object =>
-    jsonParser(json, defaultResponseEntity),
+  'text/html': (text: string): Object => plainTextParser(text),
+  'application/xml': (xml: string): Object => xmlParser(xml),
+  'application/json': (json: string): Object => jsonParser(json),
   'application/x-www-form-urlencoded': (data: string): Object =>
     Object.fromEntries(new URLSearchParams(data)),
 };

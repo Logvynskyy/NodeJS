@@ -5,7 +5,7 @@ const router = new Router('/api/hello');
 
 router.get('/', (req, res, payload) => {
   const greeting = payload.hi || 'Guten Tag, Polizei!';
-  res.send({ message: ` ${greeting} from get method` });
+  res.send({ message: `${greeting} from get method` });
 });
 
 router.post('/', (req, res) => {
