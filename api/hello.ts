@@ -3,8 +3,9 @@ import { Router } from '../src/router';
 
 const router = new Router('/api/hello');
 
-router.get('/', (req, res) => {
-  res.send({ message: 'Hello from get method' });
+router.get('/', (req, res, payload) => {
+  const greeting = payload.hi || 'Guten Tag, Polizei!';
+  res.send({ message: ` ${greeting} from get method` });
 });
 
 router.post('/', (req, res) => {
