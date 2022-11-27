@@ -16,11 +16,7 @@ export class Router {
     this.baseRoute = route;
   }
 
-  private use(
-    method: HTTPMethod,
-    route: string,
-    ...handlers: RequestHandler[]
-  ) {
+  private use(method: string, route: string, ...handlers: RequestHandler[]) {
     if (!handlers.length) {
       throw new Error('You did not assign any handlers!');
     }
@@ -37,7 +33,15 @@ export class Router {
 
   public async handle(req: VercelRequest, res: VercelResponse) {
     const { url, method } = req;
-    const handlers = this.routes[url as string][method as string];
+
+    if (!url) {
+      throw new Error('You did not specify url!');
+    }
+    if (!method) {
+      throw new Error('Invalid method on given request!');
+    }
+
+    const handlers = this.routes[url][method];
 
     if (!handlers) throw new Error('You did not assign any handlers!');
 
