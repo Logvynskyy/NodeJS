@@ -1,12 +1,12 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { HTTPMethod } from './consts/http_methods';
+import { plainTextParser, xmlParser, jsonParser } from './utilities/parser';
 
 type RequestHandler = (
   req: VercelRequest,
   res: VercelResponse,
+  payload: Object,
 ) => void | Promise<void>;
-
-import { plainTextParser, xmlParser, jsonParser } from './utilities/parser';
 
 const defaultResponseEntity = { name: 'Servus!' };
 
@@ -56,12 +56,25 @@ export class Router {
       throw new Error('Invalid method on given request!');
     }
 
+    let payload = {},
+      rawRequest = '';
+    for await (const chunk of req) {
+      rawRequest += chunk;
+    }
+
     const handlers = this.routes[url][method];
 
     if (!handlers) throw new Error('You did not assign any handlers!');
 
+    if (req.headers['content-type']) {
+      const contentType: string = req.headers['content-type'].split(';')[0];
+      if (contentTypes[contentType]) {
+        payload = contentTypes[contentType](rawRequest);
+      }
+    }
+
     for (const handler of handlers) {
-      await handler(req, res);
+      await handler(req, res, payload);
     }
 
     res.status(200).end();
