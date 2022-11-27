@@ -30,10 +30,11 @@
     "license": "ISC",
     "description": "",
     "lint-staged": {
-      "*.ts": "eslint --cache --fix",
-      "*.{ts,css,md}": "prettier --write"
+        "*.ts": "eslint --cache --fix",
+        "*.{ts,css,md}": "prettier --write"
     },
     "dependencies": {
-        "dotenv": "^16.0.3"
+        "dotenv": "^16.0.3",
+        "fast-xml-parser": "^4.0.12"
     }
 }

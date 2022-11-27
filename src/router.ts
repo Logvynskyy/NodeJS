@@ -6,6 +6,21 @@ type RequestHandler = (
   res: VercelResponse,
 ) => void | Promise<void>;
 
+import { plainTextParser, xmlParser, jsonParser } from './utilities/parser';
+
+const defaultResponseEntity = { name: 'Servus!' };
+
+const contentTypes: { [key: string]: any } = {
+  'text/html': (text: string): Object =>
+    plainTextParser(text, defaultResponseEntity),
+  'application/xml': (xml: string): Object =>
+    xmlParser(xml, defaultResponseEntity),
+  'application/json': (json: string): Object =>
+    jsonParser(json, defaultResponseEntity),
+  'application/x-www-form-urlencoded': (data: string): Object =>
+    Object.fromEntries(new URLSearchParams(data)),
+};
+
 export class Router {
   private routes: {
     [route: string]: { [method: string]: RequestHandler[] };
